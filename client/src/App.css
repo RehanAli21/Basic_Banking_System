@@ -1,0 +1,20 @@
+.sendComp {
+  position: absolute;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.sendComp form {
+  display: grid;
+  grid-template-columns: 15% 50% 20% auto;
+  column-gap: 20px;
+}
+
+.btnaa {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+}
