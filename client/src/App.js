@@ -13,7 +13,7 @@ const App = () => {
 
 	useEffect(() => {
 		axios
-			.get('http://localhost:5000/allusers')
+			.get('https://composed-bead-production.up.railway.app/allusers')
 			.then(res => setData(res.data))
 			.catch(err => console.log(err.data.msg))
 	}, [valueChanged])

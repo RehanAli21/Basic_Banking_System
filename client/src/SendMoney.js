@@ -41,7 +41,7 @@ const SendMoney = ({ name, email, data, valueChanged, setValueChanged, setShowSe
 		if (value > parseInt(balance)) return alert('You do not have Amount')
 
 		axios
-			.post('http://localhost:5000/transferMoney', {
+			.post('https://composed-bead-production.up.railway.app/transferMoney', {
 				sender: { name: name, email: email, balance: balance },
 				receiver: { name: receiverName, email: receiverEmail, balance: receiverBalance, amount: value },
 			})
