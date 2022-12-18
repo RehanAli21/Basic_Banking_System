@@ -35,6 +35,14 @@ app.get('/allusers', (req, res) => {
 	})
 })
 
+const Transfer = mongoose.model('bankingtransfer', {
+	senderName: String,
+	senderEmail: String,
+	receiverName: String,
+	receiverEmail: String,
+	amount: Number,
+})
+
 app.post('/transferMoney', (req, res) => {
 	const sender = req.body.sender
 	const receiver = req.body.receiver
@@ -65,7 +73,19 @@ app.post('/transferMoney', (req, res) => {
 			User.findOne({ name: sender.name, email: sender.email }, (err, docs) => {
 				if (err) return res.sendStatus(400)
 
-				res.send({ msg: 'Transfer is complete', remaningBalance: docs.balance })
+				const record = new Transfer({
+					senderName: sender.name,
+					senderEmail: sender.email,
+					receiverName: receiver.name,
+					receiverEmail: receiver.email,
+					amount: parseInt(receiver.amount),
+				})
+
+				record.save((err, d) => {
+					if (err) return res.sendStatus(400)
+
+					res.send({ msg: 'Transfer is complete', remaningBalance: docs.balance })
+				})
 			})
 		}
 	} else {
